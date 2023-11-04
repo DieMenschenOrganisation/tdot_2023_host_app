@@ -29,7 +29,7 @@ function requested(id: string) {
 }
 
 async function loadUserPoints() {
-    axios.get(`${backendIP}user/points/${userID}`).then(points => {
+    axios.get(`${backendIP}user/points/get/${userID}`).then(points => {
         userPoints.value = points.data;
         showSelection.value = true;
     }).catch(reason => {
