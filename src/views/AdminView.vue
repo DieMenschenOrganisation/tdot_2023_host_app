@@ -9,7 +9,7 @@ interface User {
     name: string,
 }
 
-let users = ref([]);
+let users = ref([] as User[]);
 
 loadUsers();
 
