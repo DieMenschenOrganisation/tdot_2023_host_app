@@ -3,6 +3,7 @@ import {io} from "socket.io-client";
 import {inject, ref} from "vue";
 import axios from "axios";
 
+
 const backendIP = inject("backendIP");
 const points = [
     100,200,300,400,500,600,700,800,900,1000
@@ -29,7 +30,7 @@ function requested(id: string) {
 }
 
 async function loadUserPoints() {
-    axios.get(`${backendIP}user/points/get/${userID}`).then(points => {
+    axios.get(`${backendIP}user/points/${userID}`).then(points => {
         userPoints.value = points.data;
         showSelection.value = true;
     }).catch(reason => {
