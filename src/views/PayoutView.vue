@@ -4,56 +4,53 @@ import {inject, ref} from "vue";
 import axios from "axios";
 
 const backendIP = inject("backendIP");
-
-const code = randomString(10);
-
-const socket = io("https://localhost:8000/", {
-    rejectUnauthorized: false
-});
-
-socket.on("error", (error: string) => {
-    console.log("Error occurred: " + error);
-})
-
-socket.on("requested", requested)
-
-socket.emit("register", code);
-
 const points = [
     100,200,300,400,500,600,700,800,900,1000
 ]
 
+const code = ref("");
 const showSelection = ref(false);
 let userID = "";
-let userPoints = -1;
+let userPoints = ref(-1);
+
+const socket = io(backendIP as string, {
+    rejectUnauthorized: false
+});
+socket.on("error", (error: string) => {
+    console.log("Error occurred: " + error);
+})
+socket.on("requested", requested)
+reloadCode();
 
 function requested(id: string) {
     userID = id;
     loadUserPoints();
-}
-
-async function loadUserPoints() {
-    // axios.get(backendIP + "user/points/" + userID).then(points => {
-    //     userPoints = points.data;
-    //     showSelection.value = true;
-    // }).catch(reason => {
-    //     console.log("Error: " + reason);
-    // })
-    userPoints = 650;
     showSelection.value = true;
 }
 
+async function loadUserPoints() {
+    axios.get(`${backendIP}user/points/${userID}`).then(points => {
+        userPoints.value = points.data;
+        showSelection.value = true;
+    }).catch(reason => {
+        console.log("Error: " + reason.response.data);
+    })
+}
+
 function redeem(points: number) {
-    axios.get(backendIP + "user/points/redeem?userID=" + userID + "&points=" + points);
+    axios.get(`${backendIP}user/points/redeem?userID=${userID}&points=${points}`);
     showSelection.value = false;
+    reloadCode();
 }
 
 function abort() {
     showSelection.value = false;
+    reloadCode();
 }
 
-function mockRequest() {
-    requested("c9802ac7-ef29-4788-9aae-f4c11f9a34d5")
+function reloadCode() {
+    code.value = randomString(10);
+    socket.emit("register", code.value);
 }
 
 function randomString(len: number): string {
@@ -67,7 +64,6 @@ function randomString(len: number): string {
         <h4 class="w-100 text-center">Um fortzufahren bitten einscannen:</h4>
         <img id="qrcode" class="position-absolute start-50 top-50 translate-middle"
              :src="'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=notify/'+code" alt="qrcode to scan">
-        <button @click="mockRequest">test</button>
     </div>
     <div v-else>
         <h4 class="w-100 p-4 text-center">Kontostand: {{userPoints}}</h4>
