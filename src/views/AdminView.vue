@@ -20,7 +20,7 @@ function loadUsers() {
     })
 }
 
-function removeUser(id) {
+function removeUser(id: string) {
     axios.delete(`${backendIP}user/${id}`).then(() => {
         loadUsers();
     })
