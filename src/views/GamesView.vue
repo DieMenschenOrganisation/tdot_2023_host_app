@@ -67,4 +67,8 @@ function abort() {
         color: $dark-mode-blue;
     }
 }
+
+#abort {
+    bottom: 30px;
+}
 </style>
