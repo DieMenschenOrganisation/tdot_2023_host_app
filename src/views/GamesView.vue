@@ -37,6 +37,10 @@ function awaitUserID(callback: (val: string) => void) {
 function randomString(len: number): string {
     return Math.random().toString(36).slice(2, len + 2);
 }
+
+void abort() {
+    showSelection.value = true;
+}
 </script>
 
 <template>
@@ -51,6 +55,7 @@ function randomString(len: number): string {
         <h1 class="w-100 p-4 text-center">Um fortzufahren bitten einscannen:</h1>
         <img id="qrcode" class="position-absolute start-50 top-50 translate-middle"
              :src="'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data='+value" alt="qrcode to scan">
+        <h3 id="abort" class="w-100 text-center position-absolute option" type="button" @click="abort">Abort</h3>
     </div>
 </template>
 
