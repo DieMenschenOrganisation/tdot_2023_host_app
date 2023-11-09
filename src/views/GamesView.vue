@@ -12,11 +12,6 @@ function toBlackjack() {
     awaitUserID(userID => redirect("https://blackjack.casino.schuelerprojekte.online/blackjack?userID=" + userID));
 }
 
-function toRoulette() {
-    value = "redirect/https://roulette.casino.schuelerprojekte.online/mobile";
-    showSelection.value = false;
-}
-
 let value = "na";
 function redirect(address: string) {
     window.location.href = address;
@@ -50,7 +45,6 @@ function randomString(len: number): string {
         <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center gap-5">
             <h3 type="button" class="option" @click="toSlots">Slots</h3>
             <h3 type="button" class="option" @click="toBlackjack">Blackjack</h3>
-            <h3 type="button" class="option" @click="toRoulette">Roulette</h3>
         </div>
     </div>
     <div v-else>
