@@ -13,7 +13,7 @@ function toBlackjack() {
 }
 
 function toRoulette() {
-    value = "redirect/roulette.casino.schuelerprojekte.online/mobile";
+    value = "redirect/https://roulette.casino.schuelerprojekte.online/mobile";
     showSelection.value = false;
 }
 
