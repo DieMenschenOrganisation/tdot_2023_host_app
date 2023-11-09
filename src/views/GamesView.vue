@@ -12,15 +12,23 @@ function toBlackjack() {
     awaitUserID(userID => redirect("https://blackjack.casino.schuelerprojekte.online/blackjack?userID="+userID));
 }
 
+function toRoulette() {
+}
+
+let value = "na";
+function redirectUser(address: string) {
+    value = "redirect/roulette.casino.schuelerprojekte.online/mobile";
+    showSelection.value = false;
+}
+
 function redirect(address: string) {
     window.location.href = address;
 }
 
-let userid: string = "na";
 let showSelection = ref(true);
-let code = "na";
 function awaitUserID(callback: (val: string) => void) {
-    code = randomString(10);
+    let code = randomString(10);
+    value = "notify/"+code;
     const socket = io(backendIP as string, {
         rejectUnauthorized: false
     });
@@ -49,7 +57,7 @@ function randomString(len: number): string {
     <div v-else>
         <h1 class="w-100 p-4 text-center">Um fortzufahren bitten einscannen:</h1>
         <img id="qrcode" class="position-absolute start-50 top-50 translate-middle"
-             :src="'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=notify/'+code" alt="qrcode to scan">
+             :src="'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data='+value" alt="qrcode to scan">
     </div>
 </template>
 
