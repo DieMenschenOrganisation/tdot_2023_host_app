@@ -10,6 +10,10 @@ function toGames(): void {
 function toPayout(): void {
     router.push("/payout")
 }
+
+function toRoulette(): void {
+    router.push("/roulette")
+}
 </script>
 
 <template>
@@ -19,6 +23,7 @@ function toPayout(): void {
     <div class="w-100 d-flex flex-column align-items-center">
         <h3 class="p-2 option" type="button" @click="toGames">Single Player Games</h3>
         <h3 class="p-2 option" type="button" @click="toPayout">Payout Manager</h3>
+        <h3 class="p-2 option" type="button" @click="toRoulette">Roulette</h3>
     </div>
 </template>
 
