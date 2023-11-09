@@ -5,30 +5,28 @@ import {io} from "socket.io-client";
 const backendIP = inject("backendIP");
 
 function toSlots() {
-    awaitUserID(userID => redirect("https://slots.casino.schuelerprojekte.online/slots?userID="+userID));
+    awaitUserID(userID => redirect("https://slots.casino.schuelerprojekte.online/slots?userID=" + userID));
 }
 
 function toBlackjack() {
-    awaitUserID(userID => redirect("https://blackjack.casino.schuelerprojekte.online/blackjack?userID="+userID));
+    awaitUserID(userID => redirect("https://blackjack.casino.schuelerprojekte.online/blackjack?userID=" + userID));
 }
 
 function toRoulette() {
-}
-
-let value = "na";
-function redirectUser(address: string) {
     value = "redirect/roulette.casino.schuelerprojekte.online/mobile";
     showSelection.value = false;
 }
 
+let value = "na";
 function redirect(address: string) {
     window.location.href = address;
 }
 
 let showSelection = ref(true);
+
 function awaitUserID(callback: (val: string) => void) {
     let code = randomString(10);
-    value = "notify/"+code;
+    value = "notify/" + code;
     const socket = io(backendIP as string, {
         rejectUnauthorized: false
     });
@@ -52,6 +50,7 @@ function randomString(len: number): string {
         <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center gap-5">
             <h3 type="button" class="option" @click="toSlots">Slots</h3>
             <h3 type="button" class="option" @click="toBlackjack">Blackjack</h3>
+            <h3 type="button" class="option" @click="toRoulette">Roulette</h3>
         </div>
     </div>
     <div v-else>
@@ -63,6 +62,7 @@ function randomString(len: number): string {
 
 <style scoped lang="scss">
 @import "@/assets/variables";
+
 .option {
     &:hover {
         color: $dark-mode-blue;
