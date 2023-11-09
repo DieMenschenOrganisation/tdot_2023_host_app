@@ -6,7 +6,7 @@ import axios from "axios";
 
 const backendIP = inject("backendIP");
 const points = [
-    100,200,300,400,500,600,700,800,900,1000
+    200,400,600,800,1000,1200,1400,1600,1800,2000
 ]
 
 const code = ref("");
@@ -72,7 +72,7 @@ function randomString(len: number): string {
 
         <div class="d-flex flex-column align-items-center gap-3">
             <div v-for="payout in points" :key="payout" >
-                <h5 v-if="payout <= userPoints" class="option" type="button" @click="redeem(payout)">{{payout / 100}} Stk. für {{payout}} Punkte</h5>
+                <h5 v-if="payout <= userPoints" class="option" type="button" @click="redeem(payout)">{{payout / 200}} Stk. für {{payout}} Punkte</h5>
             </div>
         </div>
 
