@@ -38,7 +38,7 @@ function randomString(len: number): string {
     return Math.random().toString(36).slice(2, len + 2);
 }
 
-void abort() {
+function abort() {
     showSelection.value = true;
 }
 </script>
