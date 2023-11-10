@@ -47,8 +47,8 @@ function abort() {
     <div v-if="showSelection">
         <h1 class="w-100 p-4 text-center">Gewünschtes Spiel auswählen:</h1>
         <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center gap-5">
-            <h3 type="button" class="option" @click="toSlots">Slots</h3>
-            <h3 type="button" class="option" @click="toBlackjack">Blackjack</h3>
+            <h3 type="button" class="option" @click="toSlots"><img class="icon" src="@/assets/slots.png" alt="slots"> Slots</h3>
+            <h3 type="button" class="option" @click="toBlackjack"><img class="icon" src="@/assets/blackjack.png" alt="slots"> Blackjack</h3>
         </div>
     </div>
     <div v-else>
@@ -70,5 +70,10 @@ function abort() {
 
 #abort {
     bottom: 30px;
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
 }
 </style>
