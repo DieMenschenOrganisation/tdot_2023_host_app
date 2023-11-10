@@ -8,10 +8,15 @@ $success: $custom-success;
 @import "node_modules/bootstrap/scss/bootstrap";
 
 body {
-  background-color: $dark-mode-0;
-  margin: 0;
-  padding: 0;
+  background: $dark-mode-0 url("@/assets/background.svg") no-repeat fixed;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+
   border: 0;
+  padding: 0;
+  margin: 0;
 }
 
 * {
